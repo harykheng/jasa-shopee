@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jasa Shopee — Hary</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #F7F6F2; --card: #FFFFFF; --text: #0D0D0B; --muted: #6B6B65;
+      --border: #E3E2DC; --green: #16A34A; --green-light: #DCFCE7;
+      --green-dark: #14532D; --wa: #25D366; --orange: #EA580C; --orange-light: #FFF7ED;
+    }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); padding-bottom: 60px; -webkit-font-smoothing: antialiased; }
+
+    /* HERO */
+    .hero { background: var(--text); color: #fff; padding: 48px 24px 40px; text-align: center; position: relative; overflow: hidden; animation: fadeIn 0.5s ease; }
+    .hero::before { content:''; position:absolute; top:-60px; right:-60px; width:200px; height:200px; border-radius:50%; background:var(--green); opacity:0.12; }
+    .hero::after  { content:''; position:absolute; bottom:-40px; left:-40px; width:140px; height:140px; border-radius:50%; background:var(--green); opacity:0.08; }
+    .hero-tag { display:inline-block; font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--green); background:rgba(22,163,74,0.15); border-radius:20px; padding:4px 12px; margin-bottom:16px; }
+    .hero h1 { font-size:28px; font-weight:700; line-height:1.2; margin-bottom:10px; letter-spacing:-0.02em; }
+    .hero h1 span { color:var(--green); }
+    .hero p { font-size:14px; color:rgba(255,255,255,0.6); line-height:1.6; max-width:300px; margin:0 auto 20px; }
+    .hero-handle { font-size:13px; font-weight:500; color:rgba(255,255,255,0.5); }
+    .hero-handle span { color:rgba(255,255,255,0.9); }
+
+    /* SECTION WRAPPER */
+    .section { padding: 32px 20px 0; }
+    .sec-label { font-size:11px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); margin-bottom:4px; }
+    .sec-title { font-size:20px; font-weight:700; letter-spacing:-0.02em; margin-bottom:16px; }
+
+    /* CARDS */
+    .cards { display:flex; flex-direction:column; gap:12px; }
+    .card { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:20px; position:relative; animation:fadeUp 0.4s ease both; }
+    .card:nth-child(1){animation-delay:0.05s} .card:nth-child(2){animation-delay:0.1s}
+    .card.featured { border-color:var(--green); border-width:1.5px; }
+    .badge { position:absolute; top:-1px; right:16px; background:var(--green); color:#fff; font-size:10px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; padding:4px 10px; border-radius:0 0 8px 8px; }
+    .card-type { font-size:10px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); margin-bottom:8px; }
+    .card-name { font-size:18px; font-weight:700; letter-spacing:-0.02em; margin-bottom:4px; }
+    .card-target { font-size:12px; color:var(--muted); margin-bottom:14px; line-height:1.5; }
+    .price-row { display:flex; align-items:baseline; gap:6px; margin-bottom:16px; }
+    .price-main { font-size:26px; font-weight:700; letter-spacing:-0.03em; }
+    .price-period { font-size:12px; color:var(--muted); }
+    .divider { height:1px; background:var(--border); margin-bottom:14px; }
+    .scope { list-style:none; display:flex; flex-direction:column; gap:8px; margin-bottom:18px; }
+    .scope li { display:flex; align-items:flex-start; gap:8px; font-size:13px; color:var(--muted); line-height:1.5; }
+    .chk { flex-shrink:0; width:16px; height:16px; border-radius:50%; background:var(--green-light); color:var(--green-dark); font-size:9px; font-weight:700; display:flex; align-items:center; justify-content:center; margin-top:1px; }
+    .scope li strong { color:var(--text); font-weight:500; }
+    .card-note { font-size:11px; color:var(--muted); background:var(--bg); border-radius:8px; padding:8px 10px; margin-bottom:16px; line-height:1.5; }
+    .card-note strong { font-weight:600; color:var(--text); }
+
+    /* PROMO BADGE */
+    .promo-row { display:flex; align-items:center; gap:8px; margin-bottom:16px; }
+    .promo-badge { font-size:10px; font-weight:700; background:#FEF3C7; color:#92400E; border-radius:20px; padding:3px 10px; letter-spacing:0.04em; }
+
+    /* BUTTONS */
+    .btn-wa { display:flex; align-items:center; justify-content:center; gap:8px; width:100%; background:var(--wa); color:#fff; font-family:'Plus Jakarta Sans',sans-serif; font-size:14px; font-weight:700; padding:14px; border-radius:12px; border:none; cursor:pointer; text-decoration:none; transition:opacity 0.15s,transform 0.1s; }
+    .btn-wa:active { opacity:0.85; transform:scale(0.98); }
+    .btn-wa.dark { background:var(--text); }
+    .btn-wa svg { width:18px; height:18px; flex-shrink:0; }
+
+    /* MODULE CARD */
+    .module-card { background:var(--card); border:1px solid var(--border); border-radius:16px; overflow:hidden; animation:fadeUp 0.4s ease 0.1s both; }
+    .module-inner { padding:20px; }
+    .module-label-row { display:flex; align-items:center; gap:8px; margin-bottom:12px; }
+    .module-tag { font-size:10px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; background:var(--orange-light); color:var(--orange); border-radius:20px; padding:3px 10px; }
+    .module-title { font-size:15px; font-weight:700; letter-spacing:-0.01em; color:var(--text); margin-bottom:8px; line-height:1.4; }
+    .module-desc { font-size:12px; color:var(--muted); line-height:1.6; margin-bottom:14px; }
+    .module-price-row { display:flex; align-items:center; gap:10px; margin-bottom:16px; }
+    .module-price { font-size:22px; font-weight:700; color:var(--text); letter-spacing:-0.02em; }
+    .module-original { font-size:13px; color:var(--muted); text-decoration:line-through; }
+    .module-disc { font-size:10px; font-weight:700; background:#DCFCE7; color:#14532D; border-radius:20px; padding:3px 8px; }
+    .module-pills { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:16px; }
+    .pill { font-size:11px; background:var(--bg); border:1px solid var(--border); border-radius:20px; padding:4px 10px; color:var(--muted); }
+    .btn-module { display:flex; align-items:center; justify-content:center; gap:8px; width:100%; background:var(--orange); color:#fff; font-family:'Plus Jakarta Sans',sans-serif; font-size:14px; font-weight:700; padding:14px; border-radius:12px; border:none; cursor:pointer; text-decoration:none; transition:opacity 0.15s,transform 0.1s; }
+    .btn-module:active { opacity:0.85; transform:scale(0.98); }
+    .btn-module svg { width:16px; height:16px; flex-shrink:0; }
+
+    /* TIDAK TERMASUK */
+    .tidak-termasuk { margin:24px 20px 0; background:var(--card); border:1px solid var(--border); border-radius:16px; padding:16px 20px; }
+    .tt-label { font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); margin-bottom:10px; }
+    .tags { display:flex; flex-wrap:wrap; gap:6px; }
+    .tag { font-size:12px; background:var(--bg); border:1px solid var(--border); border-radius:20px; padding:4px 10px; color:var(--muted); }
+
+    /* FOOTER */
+    .footer { margin-top:40px; padding:0 20px; text-align:center; }
+    .footer-div { height:1px; background:var(--border); margin-bottom:20px; }
+    .footer-text { font-size:12px; color:var(--muted); line-height:1.7; }
+    .footer-text a { color:var(--text); font-weight:600; text-decoration:none; }
+    .footer-note { font-size:11px; color:var(--muted); margin-top:8px; }
+
+    @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+  </style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-tag">Jasa Shopee & Konsultasi</div>
+  <h1>Toko Shopee lo<br><span>tumbuh bareng</span> gue.</h1>
+  <p>Bantu setup, kelola, dan scale toko Shopee lo — dari nol sampai iklan jalan.</p>
+  <div class="hero-handle">TikTok & IG <span>@build.bareng.hary</span></div>
+</div>
+
+<!-- JASA -->
+<div class="section">
+  <div class="sec-label">Jasa</div>
+  <div class="sec-title">2 cara gue bisa bantu</div>
+  <div class="cards">
+
+    <!-- KONSULTASI -->
+    <div class="card">
+      <div class="card-type">Sesi 1-on-1</div>
+      <div class="card-name">Konsultasi 1 Jam</div>
+      <div class="card-target">Punya pertanyaan spesifik soal toko Shopee lo? Kita bahas langsung via Zoom atau WA call.</div>
+      <div class="price-row">
+        <div class="price-main">Rp 350.000</div>
+        <div class="price-period">/ sesi</div>
+      </div>
+      <div class="divider"></div>
+      <ul class="scope">
+        <li><div class="chk">✓</div><span>Diskusi bebas <strong>60 menit</strong> — tanya apapun soal Shopee</span></li>
+        <li><div class="chk">✓</div><span>Topik bebas: iklan, deskripsi, pricing, foto produk, voucher</span></li>
+        <li><div class="chk">✓</div><span>Summary poin penting setelah sesi via WA</span></li>
+        <li><div class="chk">✓</div><span>Jadwal fleksibel, konfirmasi dalam 24 jam</span></li>
+      </ul>
+      <a class="btn-wa dark" href="https://wa.me/6281234567890?text=Halo+Hary%2C+saya+mau+booking+konsultasi+1+jam+nih.+Kapan+bisa%3F" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Chat di WhatsApp
+      </a>
+    </div>
+
+    <!-- BULANAN -->
+    <div class="card featured">
+      <div class="badge">Paling diminati</div>
+      <div class="card-type">Bulanan</div>
+      <div class="card-name">Kelola & Iklan</div>
+      <div class="card-target">Fokus ke produk & bisnis lo — urusan iklan dan toko Shopee gue yang handle tiap bulan.</div>
+      <div class="promo-row">
+        <div class="price-main" style="font-size:26px;font-weight:700;letter-spacing:-0.03em;">Rp 3.000.000</div>
+        <div class="price-period" style="font-size:12px;color:var(--muted);">/ bulan</div>
+        <div class="promo-badge">Harga promo</div>
+      </div>
+      <div class="divider"></div>
+      <ul class="scope">
+        <li><div class="chk">✓</div><span><strong>Setup & rapiin toko</strong> include di bulan pertama</span></li>
+        <li><div class="chk">✓</div><span>Setup & kelola <strong>Shopee Ads</strong> (budget iklan dari lo)</span></li>
+        <li><div class="chk">✓</div><span>Update produk & deskripsi setiap minggu</span></li>
+        <li><div class="chk">✓</div><span>Laporan performa bulanan (data + analisis)</span></li>
+        <li><div class="chk">✓</div><span>Konsultasi WA unlimited di jam kerja</span></li>
+      </ul>
+      <div class="card-note"><strong>Budget iklan terpisah</strong> — lo yang tentukan, gue yang optimalkan.</div>
+      <a class="btn-wa" href="https://wa.me/6281234567890?text=Halo+Hary%2C+saya+tertarik+paket+Kelola+%26+Iklan+(Rp+3+juta%2Fbulan).+Bisa+cerita+lebih%3F" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Chat di WhatsApp
+      </a>
+    </div>
+
+  </div>
+</div>
+
+<!-- TIDAK TERMASUK -->
+<div class="tidak-termasuk">
+  <div class="tt-label">Tidak termasuk di semua paket</div>
+  <div class="tags">
+    <div class="tag">Foto & video produk</div>
+    <div class="tag">Budget iklan</div>
+    <div class="tag">CS / balas chat pembeli</div>
+    <div class="tag">Packing & pengiriman</div>
+    <div class="tag">Desain grafis baru</div>
+  </div>
+</div>
+
+<!-- MODUL -->
+<div class="section">
+  <div class="sec-label">Produk Digital</div>
+  <div class="sec-title">Belajar mandiri</div>
+  <div class="module-card">
+    <div class="module-inner">
+      <div class="module-label-row">
+        <div class="module-tag">Modul · Shopee Ads</div>
+      </div>
+      <div class="module-title">Modul GMV MAX 2025: Strategi ROAS vs AUTO untuk Seller Shopee</div>
+      <div class="module-desc">Bedah tuntas perbedaan AUTO vs ROAS, lengkap dengan framework testing & scaling, studi kasus real (ROAS 28+), dan checklist monitoring biar iklan makin efisien.</div>
+      <div class="module-price-row">
+        <div class="module-price">Rp 25.000</div>
+        <div class="module-original">Rp 99.000</div>
+        <div class="module-disc">75% off</div>
+      </div>
+      <div class="module-pills">
+        <div class="pill">Seller pemula</div>
+        <div class="pill">Seller yang mau scale</div>
+        <div class="pill">Hemat budget iklan</div>
+      </div>
+      <a class="btn-module" href="https://lynk.id/harykheng/dp3g6zy1wq6y" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        Dapatkan Modul Ini
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-div"></div>
+  <div class="footer-text">
+    Follow untuk tips Shopee gratis setiap hari<br>
+    TikTok & Instagram <a href="https://www.tiktok.com/@build.bareng.hary" target="_blank" rel="noopener">@build.bareng.hary</a>
+  </div>
+  <div class="footer-note">Pembayaran di muka. Konfirmasi dalam 24 jam kerja.</div>
+</div>
+
+</body>
+</html>
